@@ -36,10 +36,16 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(BeginEditingInput:) name:@"BeginEditingInput" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(EndEditingInput:) name:@"EndEditingInput" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAfterEditNotification:) name:@"UpdateAfterEditNotification" object:nil];
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.inputTableView reloadData];
+    
+    [self.circleDrawing zoomToExtents];
+    
+    [self.circleDrawing setNeedsDisplay];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -89,8 +95,8 @@
         else if( cell.label == @"theta")
             _circleModel.theta = newValue*M_PI/180;
         [_circleModel CalculateRotatedStressFromPrincipalStressAndThetaP];
-        //[_circleDrawing zoomToExtents];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateAfterEditNotification" object:self];
+        [_circleDrawing zoomToExtents];
+        [_circleDrawing setNeedsDisplay];
     } else {
 		[cell.inputTextField setTextColor:[UIColor redColor]];
     }
@@ -168,7 +174,6 @@
             cell.label = @"theta";
             [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;\'(&deg;)</div>" baseURL:nil];
         }
-        //cell.imageView.image = [greekInputImages objectAtIndex:indexPath.row];
         
         return cell;
     }
@@ -194,15 +199,6 @@
      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
      [alert show];
      [alert release];*/
-}
-
-- (void)updateAfterEditNotification:(NSNotification *)notification  {
-    
-    [self.inputTableView reloadData];
-    
-    [self.circleDrawing zoomToExtents];
-    
-    [self.circleDrawing setNeedsDisplay];
 }
 
 - (BOOL)validateTextIsNumber:(NSString*)newText value:(double*)value {

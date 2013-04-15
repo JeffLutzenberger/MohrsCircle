@@ -15,8 +15,6 @@
     UITextField *_textFieldBeingEdited;
 }
 
-- (void)updateAfterEditNotification:(NSNotification *)notification;
-
 @property (nonatomic, retain) IBOutlet CircleDrawingView* circleDrawing;
 
 @property (nonatomic, retain) IBOutlet UITableView* inputTableView;

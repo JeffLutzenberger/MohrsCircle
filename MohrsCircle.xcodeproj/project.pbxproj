@@ -65,7 +65,6 @@
 		BC8B77AF1710EC9D001AEC97 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8B77AE1710EC9D001AEC97 /* InputCell.m */; };
 		BC8B77B21710ED4F001AEC97 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8B77B11710ED4F001AEC97 /* InputCell.xib */; };
 		BCB841301713A336001FD7EA /* PrinciplaStressController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */; };
-		BCB8413D1715D752001FD7EA /* PrincipalStressViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8413B1715D752001FD7EA /* PrincipalStressViewController2.m */; };
 		BCB8413E1715D752001FD7EA /* PrincipalStressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */; };
 /* End PBXBuildFile section */
 
@@ -150,8 +149,6 @@
 		BC8B77B11710ED4F001AEC97 /* InputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
 		BCB8412E1713A336001FD7EA /* PrinciplaStressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinciplaStressController.h; sourceTree = "<group>"; };
 		BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinciplaStressController.m; sourceTree = "<group>"; };
-		BCB8413A1715D752001FD7EA /* PrincipalStressViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrincipalStressViewController2.h; sourceTree = "<group>"; };
-		BCB8413B1715D752001FD7EA /* PrincipalStressViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrincipalStressViewController2.m; sourceTree = "<group>"; };
 		BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrincipalStressViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +217,7 @@
 		BC4045D3143FC9A5003FFE02 /* MohrsCircle */ = {
 			isa = PBXGroup;
 			children = (
+				BCB84142171BCEE4001FD7EA /* Views */,
 				BCB841311713A367001FD7EA /* Controllers */,
 				BC40462F1442335C003FFE02 /* RegexKitLite */,
 				BC4045DC143FC9A5003FFE02 /* MohrsCircleAppDelegate.h */,
@@ -229,17 +227,12 @@
 				BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */,
 				BC4045EB143FC9A5003FFE02 /* SecondView.xib */,
 				BC4045D4143FC9A5003FFE02 /* Supporting Files */,
-				BC40460C143FC9DC003FFE02 /* CircleDrawingView.h */,
-				BC40460D143FC9DC003FFE02 /* CircleDrawingView.m */,
 				BC40461914411520003FFE02 /* Camera.h */,
 				BC40461A14411520003FFE02 /* Camera.m */,
 				BC40461C144117B4003FFE02 /* Canvas.h */,
 				BC40461D144117B4003FFE02 /* Canvas.m */,
 				BC40461F14411859003FFE02 /* MohrsCircleModel.h */,
 				BC40462014411859003FFE02 /* MohrsCircleModel.m */,
-				BC8B77AD1710EC9D001AEC97 /* InputCell.h */,
-				BC8B77AE1710EC9D001AEC97 /* InputCell.m */,
-				BC8B77B11710ED4F001AEC97 /* InputCell.xib */,
 			);
 			path = MohrsCircle;
 			sourceTree = "<group>";
@@ -325,10 +318,20 @@
 				BC4045E3143FC9A5003FFE02 /* FirstViewController.m */,
 				BCB8412E1713A336001FD7EA /* PrinciplaStressController.h */,
 				BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */,
-				BCB8413A1715D752001FD7EA /* PrincipalStressViewController2.h */,
-				BCB8413B1715D752001FD7EA /* PrincipalStressViewController2.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		BCB84142171BCEE4001FD7EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC40460C143FC9DC003FFE02 /* CircleDrawingView.h */,
+				BC40460D143FC9DC003FFE02 /* CircleDrawingView.m */,
+				BC8B77AD1710EC9D001AEC97 /* InputCell.h */,
+				BC8B77AE1710EC9D001AEC97 /* InputCell.m */,
+				BC8B77B11710ED4F001AEC97 /* InputCell.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,7 +489,6 @@
 				BC40462E1442333A003FFE02 /* RegexKitLite.m in Sources */,
 				BC8B77AF1710EC9D001AEC97 /* InputCell.m in Sources */,
 				BCB841301713A336001FD7EA /* PrinciplaStressController.m in Sources */,
-				BCB8413D1715D752001FD7EA /* PrincipalStressViewController2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
