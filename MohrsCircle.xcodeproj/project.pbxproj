@@ -32,8 +32,6 @@
 		BC404603143FC9A5003FFE02 /* MohrsCircleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC404602143FC9A5003FFE02 /* MohrsCircleTests.m */; };
 		BC40460E143FC9DC003FFE02 /* CircleDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC40460D143FC9DC003FFE02 /* CircleDrawingView.m */; };
 		BC4046101440DC8B003FFE02 /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = BC40460F1440DC8B003FFE02 /* pin.png */; };
-		BC40461B14411520003FFE02 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = BC40461A14411520003FFE02 /* Camera.m */; };
-		BC40461E144117B4003FFE02 /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = BC40461D144117B4003FFE02 /* Canvas.m */; };
 		BC40462114411859003FFE02 /* MohrsCircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC40462014411859003FFE02 /* MohrsCircleModel.m */; };
 		BC40462E1442333A003FFE02 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = BC40462D1442333A003FFE02 /* RegexKitLite.m */; };
 		BC41138514A771FE00F79A1C /* sigma_1_12pt.png in Resources */ = {isa = PBXBuildFile; fileRef = BC41137E14A771FE00F79A1C /* sigma_1_12pt.png */; };
@@ -110,10 +108,6 @@
 		BC40460C143FC9DC003FFE02 /* CircleDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDrawingView.h; sourceTree = "<group>"; };
 		BC40460D143FC9DC003FFE02 /* CircleDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDrawingView.m; sourceTree = "<group>"; };
 		BC40460F1440DC8B003FFE02 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = MohrsCircle/pin.png; sourceTree = "<group>"; };
-		BC40461914411520003FFE02 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		BC40461A14411520003FFE02 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
-		BC40461C144117B4003FFE02 /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
-		BC40461D144117B4003FFE02 /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
 		BC40461F14411859003FFE02 /* MohrsCircleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MohrsCircleModel.h; sourceTree = SOURCE_ROOT; };
 		BC40462014411859003FFE02 /* MohrsCircleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MohrsCircleModel.m; sourceTree = SOURCE_ROOT; };
 		BC40462C1442333A003FFE02 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -217,22 +211,15 @@
 		BC4045D3143FC9A5003FFE02 /* MohrsCircle */ = {
 			isa = PBXGroup;
 			children = (
+				BCB84143171BCFA9001FD7EA /* Models */,
 				BCB84142171BCEE4001FD7EA /* Views */,
 				BCB841311713A367001FD7EA /* Controllers */,
 				BC40462F1442335C003FFE02 /* RegexKitLite */,
+				BC4045DF143FC9A5003FFE02 /* MainWindow.xib */,
 				BC4045DC143FC9A5003FFE02 /* MohrsCircleAppDelegate.h */,
 				BC4045DD143FC9A5003FFE02 /* MohrsCircleAppDelegate.m */,
-				BC4045DF143FC9A5003FFE02 /* MainWindow.xib */,
-				BC4045E8143FC9A5003FFE02 /* FirstView.xib */,
-				BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */,
 				BC4045EB143FC9A5003FFE02 /* SecondView.xib */,
 				BC4045D4143FC9A5003FFE02 /* Supporting Files */,
-				BC40461914411520003FFE02 /* Camera.h */,
-				BC40461A14411520003FFE02 /* Camera.m */,
-				BC40461C144117B4003FFE02 /* Canvas.h */,
-				BC40461D144117B4003FFE02 /* Canvas.m */,
-				BC40461F14411859003FFE02 /* MohrsCircleModel.h */,
-				BC40462014411859003FFE02 /* MohrsCircleModel.m */,
 			);
 			path = MohrsCircle;
 			sourceTree = "<group>";
@@ -318,6 +305,8 @@
 				BC4045E3143FC9A5003FFE02 /* FirstViewController.m */,
 				BCB8412E1713A336001FD7EA /* PrinciplaStressController.h */,
 				BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */,
+				BC4045E8143FC9A5003FFE02 /* FirstView.xib */,
+				BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -332,6 +321,15 @@
 				BC8B77B11710ED4F001AEC97 /* InputCell.xib */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		BCB84143171BCFA9001FD7EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC40461F14411859003FFE02 /* MohrsCircleModel.h */,
+				BC40462014411859003FFE02 /* MohrsCircleModel.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,8 +481,6 @@
 				BC4045DE143FC9A5003FFE02 /* MohrsCircleAppDelegate.m in Sources */,
 				BC4045E4143FC9A5003FFE02 /* FirstViewController.m in Sources */,
 				BC40460E143FC9DC003FFE02 /* CircleDrawingView.m in Sources */,
-				BC40461B14411520003FFE02 /* Camera.m in Sources */,
-				BC40461E144117B4003FFE02 /* Canvas.m in Sources */,
 				BC40462114411859003FFE02 /* MohrsCircleModel.m in Sources */,
 				BC40462E1442333A003FFE02 /* RegexKitLite.m in Sources */,
 				BC8B77AF1710EC9D001AEC97 /* InputCell.m in Sources */,
