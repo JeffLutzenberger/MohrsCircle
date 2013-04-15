@@ -141,7 +141,7 @@
         }
         
         if(indexPath.row == 0){
-            cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.sigmax];
+            cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", self.circleModel.sigmax];
             cell.label = @"sigma_x";
             
             [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>x</sub></div>" baseURL:nil];

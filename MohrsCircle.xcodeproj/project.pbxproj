@@ -67,7 +67,6 @@
 		BCB841301713A336001FD7EA /* PrinciplaStressController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */; };
 		BCB8413D1715D752001FD7EA /* PrincipalStressViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8413B1715D752001FD7EA /* PrincipalStressViewController2.m */; };
 		BCB8413E1715D752001FD7EA /* PrincipalStressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */; };
-		BCB84141171B0EC3001FD7EA /* InputViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB84140171B0EC3001FD7EA /* InputViewControllerBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,8 +153,6 @@
 		BCB8413A1715D752001FD7EA /* PrincipalStressViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrincipalStressViewController2.h; sourceTree = "<group>"; };
 		BCB8413B1715D752001FD7EA /* PrincipalStressViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrincipalStressViewController2.m; sourceTree = "<group>"; };
 		BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrincipalStressViewController.xib; sourceTree = "<group>"; };
-		BCB8413F171B0EC3001FD7EA /* InputViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewControllerBase.h; sourceTree = "<group>"; };
-		BCB84140171B0EC3001FD7EA /* InputViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewControllerBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,8 +321,6 @@
 		BCB841311713A367001FD7EA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BCB8413F171B0EC3001FD7EA /* InputViewControllerBase.h */,
-				BCB84140171B0EC3001FD7EA /* InputViewControllerBase.m */,
 				BC4045E2143FC9A5003FFE02 /* FirstViewController.h */,
 				BC4045E3143FC9A5003FFE02 /* FirstViewController.m */,
 				BCB8412E1713A336001FD7EA /* PrinciplaStressController.h */,
@@ -492,7 +487,6 @@
 				BC8B77AF1710EC9D001AEC97 /* InputCell.m in Sources */,
 				BCB841301713A336001FD7EA /* PrinciplaStressController.m in Sources */,
 				BCB8413D1715D752001FD7EA /* PrincipalStressViewController2.m in Sources */,
-				BCB84141171B0EC3001FD7EA /* InputViewControllerBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

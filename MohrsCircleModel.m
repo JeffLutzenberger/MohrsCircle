@@ -63,6 +63,7 @@
     _tauxy = radius*sin(2*_theta_p);
     
     _sigmax_theta = sigmaAvg + (_sigmax - _sigmay)*0.5*cos(2*_theta)+_tauxy*sin(2*_theta);
+    _sigmay_theta = sigmaAvg - (_sigmax - _sigmay)*0.5*cos(2*_theta)-_tauxy*sin(2*_theta);
     _tauxy_theta = -(_sigmax-_sigmay)*0.5*sin(2*_theta)+_tauxy*cos(2*_theta);
     
     [self CalculatePrinciplaAndRotatedStress];
