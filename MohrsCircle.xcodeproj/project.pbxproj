@@ -14,6 +14,8 @@
 		BC00F8D714B263DF001D52FC /* icon_512.xcf in Resources */ = {isa = PBXBuildFile; fileRef = BC00F8D114B263DF001D52FC /* icon_512.xcf */; };
 		BC00F8D814B263DF001D52FC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BC00F8D214B263DF001D52FC /* icon.png */; };
 		BC00F8DA14B268CC001D52FC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC00F8D914B268CB001D52FC /* Default@2x.png */; };
+		BC25494C172454AC00929920 /* GraphicsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25494B172454AC00929920 /* GraphicsObject.m */; };
+		BC25494F172454C900929920 /* GraphicsStressBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = BC25494E172454C900929920 /* GraphicsStressBlock.m */; };
 		BC4045CE143FC9A5003FFE02 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4045CD143FC9A5003FFE02 /* UIKit.framework */; };
 		BC4045D0143FC9A5003FFE02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4045CF143FC9A5003FFE02 /* Foundation.framework */; };
 		BC4045D2143FC9A5003FFE02 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4045D1143FC9A5003FFE02 /* CoreGraphics.framework */; };
@@ -62,8 +64,12 @@
 		BC4113C414A7DFBF00F79A1C /* 1324853283_search.png in Resources */ = {isa = PBXBuildFile; fileRef = BC4113C314A7DFBF00F79A1C /* 1324853283_search.png */; };
 		BC8B77AF1710EC9D001AEC97 /* InputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8B77AE1710EC9D001AEC97 /* InputCell.m */; };
 		BC8B77B21710ED4F001AEC97 /* InputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8B77B11710ED4F001AEC97 /* InputCell.xib */; };
-		BCB841301713A336001FD7EA /* PrinciplaStressController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */; };
+		BCB841301713A336001FD7EA /* PrincipalStressController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8412F1713A336001FD7EA /* PrincipalStressController.m */; };
 		BCB8413E1715D752001FD7EA /* PrincipalStressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */; };
+		BCB84148171BDB36001FD7EA /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB84146171BDB35001FD7EA /* ResultsViewController.m */; };
+		BCB84149171BDB36001FD7EA /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB84147171BDB35001FD7EA /* ResultsViewController.xib */; };
+		BCB8414C171D9D5D001FD7EA /* ResultsDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8414B171D9D5D001FD7EA /* ResultsDrawingView.m */; };
+		BCB8414F171D9F93001FD7EA /* BaseDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8414E171D9F93001FD7EA /* BaseDrawingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +90,10 @@
 		BC00F8D114B263DF001D52FC /* icon_512.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon_512.xcf; sourceTree = "<group>"; };
 		BC00F8D214B263DF001D52FC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		BC00F8D914B268CB001D52FC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BC25494A172454AC00929920 /* GraphicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsObject.h; sourceTree = "<group>"; };
+		BC25494B172454AC00929920 /* GraphicsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsObject.m; sourceTree = "<group>"; };
+		BC25494D172454C900929920 /* GraphicsStressBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsStressBlock.h; sourceTree = "<group>"; };
+		BC25494E172454C900929920 /* GraphicsStressBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsStressBlock.m; sourceTree = "<group>"; };
 		BC4045C9143FC9A5003FFE02 /* MohrsCircle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MohrsCircle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC4045CD143FC9A5003FFE02 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC4045CF143FC9A5003FFE02 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -141,9 +151,16 @@
 		BC8B77AD1710EC9D001AEC97 /* InputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCell.h; sourceTree = "<group>"; };
 		BC8B77AE1710EC9D001AEC97 /* InputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCell.m; sourceTree = "<group>"; };
 		BC8B77B11710ED4F001AEC97 /* InputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCell.xib; sourceTree = "<group>"; };
-		BCB8412E1713A336001FD7EA /* PrinciplaStressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinciplaStressController.h; sourceTree = "<group>"; };
-		BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinciplaStressController.m; sourceTree = "<group>"; };
+		BCB8412F1713A336001FD7EA /* PrincipalStressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrincipalStressController.m; sourceTree = "<group>"; };
 		BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrincipalStressViewController.xib; sourceTree = "<group>"; };
+		BCB84144171BD272001FD7EA /* PrincipalStressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrincipalStressController.h; sourceTree = "<group>"; };
+		BCB84145171BDB35001FD7EA /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		BCB84146171BDB35001FD7EA /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		BCB84147171BDB35001FD7EA /* ResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
+		BCB8414A171D9D5C001FD7EA /* ResultsDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsDrawingView.h; sourceTree = "<group>"; };
+		BCB8414B171D9D5D001FD7EA /* ResultsDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsDrawingView.m; sourceTree = "<group>"; };
+		BCB8414D171D9F93001FD7EA /* BaseDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDrawingView.h; sourceTree = "<group>"; };
+		BCB8414E171D9F93001FD7EA /* BaseDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDrawingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +187,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC2549491724549000929920 /* Graphics Objects */ = {
+			isa = PBXGroup;
+			children = (
+				BC25494A172454AC00929920 /* GraphicsObject.h */,
+				BC25494B172454AC00929920 /* GraphicsObject.m */,
+				BC25494D172454C900929920 /* GraphicsStressBlock.h */,
+				BC25494E172454C900929920 /* GraphicsStressBlock.m */,
+			);
+			name = "Graphics Objects";
+			sourceTree = "<group>";
+		};
 		BC4045BE143FC9A5003FFE02 = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +239,7 @@
 		BC4045D3143FC9A5003FFE02 /* MohrsCircle */ = {
 			isa = PBXGroup;
 			children = (
+				BC2549491724549000929920 /* Graphics Objects */,
 				BCB84143171BCFA9001FD7EA /* Models */,
 				BCB84142171BCEE4001FD7EA /* Views */,
 				BCB841311713A367001FD7EA /* Controllers */,
@@ -303,10 +332,13 @@
 			children = (
 				BC4045E2143FC9A5003FFE02 /* FirstViewController.h */,
 				BC4045E3143FC9A5003FFE02 /* FirstViewController.m */,
-				BCB8412E1713A336001FD7EA /* PrinciplaStressController.h */,
-				BCB8412F1713A336001FD7EA /* PrinciplaStressController.m */,
+				BCB84144171BD272001FD7EA /* PrincipalStressController.h */,
+				BCB8412F1713A336001FD7EA /* PrincipalStressController.m */,
+				BCB84145171BDB35001FD7EA /* ResultsViewController.h */,
+				BCB84146171BDB35001FD7EA /* ResultsViewController.m */,
 				BC4045E8143FC9A5003FFE02 /* FirstView.xib */,
 				BCB8413C1715D752001FD7EA /* PrincipalStressViewController.xib */,
+				BCB84147171BDB35001FD7EA /* ResultsViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -316,9 +348,13 @@
 			children = (
 				BC40460C143FC9DC003FFE02 /* CircleDrawingView.h */,
 				BC40460D143FC9DC003FFE02 /* CircleDrawingView.m */,
+				BCB8414A171D9D5C001FD7EA /* ResultsDrawingView.h */,
+				BCB8414B171D9D5D001FD7EA /* ResultsDrawingView.m */,
 				BC8B77AD1710EC9D001AEC97 /* InputCell.h */,
 				BC8B77AE1710EC9D001AEC97 /* InputCell.m */,
 				BC8B77B11710ED4F001AEC97 /* InputCell.xib */,
+				BCB8414D171D9F93001FD7EA /* BaseDrawingView.h */,
+				BCB8414E171D9F93001FD7EA /* BaseDrawingView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -442,6 +478,7 @@
 				BC00F8DA14B268CC001D52FC /* Default@2x.png in Resources */,
 				BC8B77B21710ED4F001AEC97 /* InputCell.xib in Resources */,
 				BCB8413E1715D752001FD7EA /* PrincipalStressViewController.xib in Resources */,
+				BCB84149171BDB36001FD7EA /* ResultsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +521,12 @@
 				BC40462114411859003FFE02 /* MohrsCircleModel.m in Sources */,
 				BC40462E1442333A003FFE02 /* RegexKitLite.m in Sources */,
 				BC8B77AF1710EC9D001AEC97 /* InputCell.m in Sources */,
-				BCB841301713A336001FD7EA /* PrinciplaStressController.m in Sources */,
+				BCB841301713A336001FD7EA /* PrincipalStressController.m in Sources */,
+				BCB84148171BDB36001FD7EA /* ResultsViewController.m in Sources */,
+				BCB8414C171D9D5D001FD7EA /* ResultsDrawingView.m in Sources */,
+				BCB8414F171D9F93001FD7EA /* BaseDrawingView.m in Sources */,
+				BC25494C172454AC00929920 /* GraphicsObject.m in Sources */,
+				BC25494F172454C900929920 /* GraphicsStressBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

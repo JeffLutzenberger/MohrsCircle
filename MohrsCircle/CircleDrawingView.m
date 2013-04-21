@@ -10,6 +10,8 @@
 #import "MohrsCircleAppDelegate.h"
 #import "RegexKitLite.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation CircleDrawingView
 
 typedef enum Quadrant : NSInteger Quadrant;
@@ -24,6 +26,7 @@ enum Quadrant : NSInteger {
 
 double label_offset_x = 24;
 double label_offset_y = 16;
+double model_width_factor = 4.5;
 
 - (id)init
 {
@@ -35,10 +38,15 @@ double label_offset_y = 16;
 {
     self = [super initWithCoder:aDecoder];
     if(self) {
+        
+        
+        self.layer.cornerRadius = 10;
+        self.layer.masksToBounds = YES;
+        
         MohrsCircleAppDelegate* app = (MohrsCircleAppDelegate*)[[UIApplication sharedApplication] delegate];
         self.circleModel = app.circleModel;
         
-        CGFloat modelWidth = [self.circleModel Radius]*4;
+        CGFloat modelWidth = [self.circleModel Radius]*model_width_factor;
         CGFloat modelCenter = [self.circleModel SigmaAvg];
         CGFloat modelHeight = self.frame.size.height/self.frame.size.width*modelWidth;
         CGPoint origin = CGPointMake(modelCenter-modelWidth/2, -modelHeight/2);
@@ -75,16 +83,16 @@ double label_offset_y = 16;
     return myView;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+/*- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     [self zoomToExtents];
     return YES;
 }
-
+*/
 - (void)zoomToExtents
 {
     //update the viewingRectangle and redraw
-    CGFloat modelWidth = [self.circleModel Radius]*4;
+    CGFloat modelWidth = [self.circleModel Radius]*model_width_factor;
     CGFloat modelCenter = [self.circleModel SigmaAvg];
     CGFloat modelHeight = self.frame.size.height/self.frame.size.width*modelWidth;
     CGPoint origin = CGPointMake(modelCenter-modelWidth/2, -modelHeight/2);
@@ -132,72 +140,6 @@ double label_offset_y = 16;
     
 }
 
-- (CGPoint)translatePoint:(CGPoint)p1 p2:(CGPoint)p2{
-    return CGPointMake(p1.x+p2.x, p1.y+p2.y);
-}
-
-- (CGPoint)rotatePoint:(CGPoint)p theta:(CGFloat)theta{
-    CGFloat x = p.x;
-    CGFloat y = p.y;
-    return CGPointMake(x*cos(theta) - y*sin(theta),
-                       x*sin(theta) + y*cos(theta));
-}
-
-- (void)drawDot:(CGPoint)p{
-    
-    CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
-    
-    CGFloat radius = 2/pixelScale;
-    
-    CGRect circle = CGRectMake(p.x-radius, p.y-radius, 2*radius, 2*radius);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetLineWidth(context, 2.0/pixelScale);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
-    
-    CGContextAddEllipseInRect(context, circle);
-    
-    CGContextStrokePath(context);
-}
-- (void)drawArrowHead:(CGPoint)p theta:(CGFloat)theta{
-    
-    CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGFloat arrow_size = 6/pixelScale;
-    
-    CGPoint p1 = CGPointMake(0, 0);
-    
-    CGPoint p2 = CGPointMake(p1.x-arrow_size*0.5, p1.y-arrow_size);
-
-    CGPoint p3 = CGPointMake(0, p1.y-arrow_size*0.6);
-    
-    CGPoint p4 = CGPointMake(p1.x+arrow_size*0.5, p1.y-arrow_size);
-    
-    p1 = [self rotatePoint:p1 theta:theta];
-    p2 = [self rotatePoint:p2 theta:theta];
-    p3 = [self rotatePoint:p3 theta:theta];
-    p4 = [self rotatePoint:p4 theta:theta];
-    
-    p1 = [self translatePoint:p1 p2:p];
-    p2 = [self translatePoint:p2 p2:p];
-    p3 = [self translatePoint:p3 p2:p];
-    p4 = [self translatePoint:p4 p2:p];
-    
-    CGContextMoveToPoint(context, p1.x, p1.y);
-    CGContextAddLineToPoint(context, p2.x, p2.y);
-    CGContextAddLineToPoint(context, p3.x, p3.y);
-    CGContextAddLineToPoint(context, p4.x, p4.y);
-    CGContextClosePath(context);
-    
-    CGPathDrawingMode mode = kCGPathFillStroke;
-    CGContextDrawPath( context, mode );
-    
-}
-
 - (void)drawThetaPrincipalArc{
     //arc should go from plane stress line to tau = 0 (CCW)
     CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
@@ -227,7 +169,7 @@ double label_offset_y = 16;
     
     CGPoint end = CGPointMake(sigmaAvg+radius*cos(-2*[self.circleModel theta_p]), radius*sin(-2*[self.circleModel theta_p]));
     
-    [self drawArrowHead:tip theta:0];
+    [self drawArrowHead:tip theta:0 size:6/pixelScale];
     
     CGPoint ps1 = [self WorldToWindow:end];
     
@@ -269,7 +211,7 @@ double label_offset_y = 16;
     
     CGPoint end = CGPointMake(sigmaAvg+radius*cos(theta_1), radius*sin(theta_1));
     
-    [self drawArrowHead:tip theta:theta_2];
+    [self drawArrowHead:tip theta:theta_2 size:6/pixelScale];
     
     CGPoint ps1 = [self WorldToWindow:end];
     
@@ -307,9 +249,9 @@ double label_offset_y = 16;
     
     CGContextStrokePath(context);
     
-    [self drawArrowHead:CGPointMake(x2, 0) theta:-M_PI_2];
+    [self drawArrowHead:CGPointMake(x2, 0) theta:-M_PI_2 size:6/pixelScale];
     
-    [self drawArrowHead:CGPointMake(0, y2) theta:0];
+    [self drawArrowHead:CGPointMake(0, y2) theta:0 size:6/pixelScale];
 }
 
 - (void)drawCircle
@@ -486,44 +428,6 @@ double label_offset_y = 16;
     
     [self StartCheckLabelForCollisionAndAdjust:sigmayPLabel];
     
-}
-
-- (CGPoint)WorldToWindow: (CGPoint)worldPt
-{
-    //x 
-    CGFloat x0win = 0;
-    CGFloat x2win = self.frame.size.width;
-    CGFloat x2world = viewingRect.size.width + viewingRect.origin.x;
-    CGFloat x0world = viewingRect.origin.x;
-    CGFloat x1win = (worldPt.x-x0world)/(x2world-x0world)*(x2win-x0win);
-    
-    //y 
-    CGFloat y0win = 0;
-    CGFloat y2win = self.frame.size.height;
-    CGFloat y2world = viewingRect.size.height + viewingRect.origin.y;
-    CGFloat y0world = viewingRect.origin.y;
-    CGFloat y1win = (worldPt.y-y0world)/(y2world-y0world)*(y2win-y0win);
-    
-    return CGPointMake( x1win, self.frame.size.height - y1win );
-}
-
-- (CGPoint)WindowToWorld: (CGPoint)windowPt
-{
-    //x 
-    CGFloat x0win = 0;
-    CGFloat x2win = self.frame.size.width;
-    CGFloat x2world = viewingRect.size.width + viewingRect.origin.x;
-    CGFloat x0world = viewingRect.origin.x;
-    CGFloat x1world = x0world + (windowPt.x-x0win)/(x2win-x0win)*(x2world-x0world);
-    
-    //y 
-    CGFloat y0win = 0;
-    CGFloat y2win = self.frame.size.height;
-    CGFloat y2world = viewingRect.size.height + viewingRect.origin.y;
-    CGFloat y0world = viewingRect.origin.y;
-    CGFloat y1world = y0world + (windowPt.y-y0win)/(y2win-y0win)*(y2world-y0world);
-    
-    return CGPointMake( x1world, y1world );
 }
 
 - (BOOL)validateTextIsNumber:(NSString*)newText value:(double*)value {

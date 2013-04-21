@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BaseDrawingView.h"
 #import "MohrsCircleModel.h"
 
-@interface CircleDrawingView : UIView {
+@interface CircleDrawingView : BaseDrawingView {
     
-    CGRect viewingRect;
     UIWebView* sigmaMinusTauWebView;
     UIWebView* sigma1Label;
     UIWebView* sigma2Label;
@@ -31,11 +31,6 @@
 
 @property (nonatomic, assign) MohrsCircleModel* circleModel;
 
-- (CGPoint)translatePoint:(CGPoint)p1 p2:(CGPoint)p2;
-- (CGPoint)rotatePoint:(CGPoint)p theta:(CGFloat)theta;
-- (void)drawDot:(CGPoint)p;
-- (void)drawArrowHead:(CGPoint)p theta:(CGFloat)theta;
-    
 - (void)drawThetaArc;
 - (void)drawThetaPrincipalArc;
 - (void)drawCircle;
@@ -43,13 +38,6 @@
 - (void)drawTauAxis;
 - (void)drawStressAxis;
 - (void)drawRotatedStressAxis;
-- (void)drawLabels;
-
 - (void)zoomToExtents;
-
-- (void)updateLabels;
-
-- (CGPoint)WindowToWorld: (CGPoint)windowPt;
-- (CGPoint)WorldToWindow: (CGPoint)worldPt;
 
 @end

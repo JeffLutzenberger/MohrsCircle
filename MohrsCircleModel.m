@@ -15,10 +15,10 @@
 {
     self = [super init];
     
-    _sigmax = 200;
-    _sigmay = 50;
-    _tauxy = 100;
-    _theta = 20*M_PI/180;
+    _sigmax = 15000;
+    _sigmay = 5000;
+    _tauxy = 4000;
+    _theta = 40*M_PI/180;
     
     [self CalculatePrinciplaAndRotatedStress];
     
@@ -50,6 +50,12 @@
     _sigmax_theta = sigmaAvg + (_sigmax - _sigmay)*0.5*cos(2*_theta)+_tauxy*sin(2*_theta);
     _sigmay_theta = sigmaAvg - (_sigmax - _sigmay)*0.5*cos(2*_theta)-_tauxy*sin(2*_theta);
     _tauxy_theta = -(_sigmax-_sigmay)*0.5*sin(2*_theta)+_tauxy*cos(2*_theta);
+    
+    //max shear values
+    //max shear = raidus
+    //max shear normal stress = sigmaAvg
+    //max shear theta = 90 + 2*theta_p (for y up coordinate system)
+    _theta_max_tauxy = M_PI_4 + _theta_p;
 }
 
 - (void)CalculateRotatedStressFromPrincipalStressAndThetaP{

@@ -33,6 +33,8 @@
 
 @property (assign, nonatomic) CGFloat theta_p;
 
+@property (assign, nonatomic) CGFloat theta_max_tauxy;
+
 @property (assign, nonatomic) CGFloat sigma1;
 
 @property (assign, nonatomic) CGFloat sigma2;
