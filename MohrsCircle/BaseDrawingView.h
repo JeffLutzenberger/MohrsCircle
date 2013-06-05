@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseDrawingView : UIView {
+@interface BaseDrawingView : UIScrollView {
     
     CGRect viewingRect;
     

@@ -70,6 +70,13 @@
 		BCB84149171BDB36001FD7EA /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB84147171BDB35001FD7EA /* ResultsViewController.xib */; };
 		BCB8414C171D9D5D001FD7EA /* ResultsDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8414B171D9D5D001FD7EA /* ResultsDrawingView.m */; };
 		BCB8414F171D9F93001FD7EA /* BaseDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB8414E171D9F93001FD7EA /* BaseDrawingView.m */; };
+		BCBD3C3E1755C7D000EEA6D1 /* ResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCBD3C3D1755C7D000EEA6D1 /* ResultCell.xib */; };
+		BCBD3C411755C8A800EEA6D1 /* ResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBD3C401755C8A800EEA6D1 /* ResultCell.m */; };
+		BCBD3C43175AE9B100EEA6D1 /* sigma_x_18pt.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBD3C42175AE9B100EEA6D1 /* sigma_x_18pt.png */; };
+		BCBD3C46175AEB1900EEA6D1 /* sigma_y_18pt.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBD3C45175AEB1900EEA6D1 /* sigma_y_18pt.png */; };
+		BCBD3C49175AECB400EEA6D1 /* tau_xy_18pt.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBD3C47175AECB300EEA6D1 /* tau_xy_18pt.png */; };
+		BCBD3C4A175AECB400EEA6D1 /* theta_prime_deg_18pt.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBD3C48175AECB300EEA6D1 /* theta_prime_deg_18pt.png */; };
+		BCBD3C4C175AED3900EEA6D1 /* theta_prime_deg_12pt.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBD3C4B175AED3900EEA6D1 /* theta_prime_deg_12pt.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +168,14 @@
 		BCB8414B171D9D5D001FD7EA /* ResultsDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsDrawingView.m; sourceTree = "<group>"; };
 		BCB8414D171D9F93001FD7EA /* BaseDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDrawingView.h; sourceTree = "<group>"; };
 		BCB8414E171D9F93001FD7EA /* BaseDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDrawingView.m; sourceTree = "<group>"; };
+		BCBD3C3D1755C7D000EEA6D1 /* ResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultCell.xib; sourceTree = "<group>"; };
+		BCBD3C3F1755C8A800EEA6D1 /* ResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultCell.h; sourceTree = "<group>"; };
+		BCBD3C401755C8A800EEA6D1 /* ResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultCell.m; sourceTree = "<group>"; };
+		BCBD3C42175AE9B100EEA6D1 /* sigma_x_18pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sigma_x_18pt.png; path = MohrsCircle/equations/sigma_x_18pt.png; sourceTree = "<group>"; };
+		BCBD3C45175AEB1900EEA6D1 /* sigma_y_18pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sigma_y_18pt.png; path = MohrsCircle/equations/sigma_y_18pt.png; sourceTree = "<group>"; };
+		BCBD3C47175AECB300EEA6D1 /* tau_xy_18pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tau_xy_18pt.png; path = MohrsCircle/equations/tau_xy_18pt.png; sourceTree = "<group>"; };
+		BCBD3C48175AECB300EEA6D1 /* theta_prime_deg_18pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theta_prime_deg_18pt.png; path = MohrsCircle/equations/theta_prime_deg_18pt.png; sourceTree = "<group>"; };
+		BCBD3C4B175AED3900EEA6D1 /* theta_prime_deg_12pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theta_prime_deg_12pt.png; path = MohrsCircle/equations/theta_prime_deg_12pt.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +221,7 @@
 				BC00F8CE14B263DE001D52FC /* icon_57.png */,
 				BC00F8CF14B263DE001D52FC /* icon-114.png */,
 				BC00F8D014B263DF001D52FC /* icon_512.png */,
+				BCBD3C44175AEAC600EEA6D1 /* new_equations */,
 				BC00F8D114B263DF001D52FC /* icon_512.xcf */,
 				BC00F8D214B263DF001D52FC /* icon.png */,
 				BC40460F1440DC8B003FFE02 /* pin.png */,
@@ -355,6 +371,9 @@
 				BC8B77B11710ED4F001AEC97 /* InputCell.xib */,
 				BCB8414D171D9F93001FD7EA /* BaseDrawingView.h */,
 				BCB8414E171D9F93001FD7EA /* BaseDrawingView.m */,
+				BCBD3C3F1755C8A800EEA6D1 /* ResultCell.h */,
+				BCBD3C401755C8A800EEA6D1 /* ResultCell.m */,
+				BCBD3C3D1755C7D000EEA6D1 /* ResultCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -366,6 +385,18 @@
 				BC40462014411859003FFE02 /* MohrsCircleModel.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		BCBD3C44175AEAC600EEA6D1 /* new_equations */ = {
+			isa = PBXGroup;
+			children = (
+				BCBD3C4B175AED3900EEA6D1 /* theta_prime_deg_12pt.png */,
+				BCBD3C47175AECB300EEA6D1 /* tau_xy_18pt.png */,
+				BCBD3C48175AECB300EEA6D1 /* theta_prime_deg_18pt.png */,
+				BCBD3C45175AEB1900EEA6D1 /* sigma_y_18pt.png */,
+				BCBD3C42175AE9B100EEA6D1 /* sigma_x_18pt.png */,
+			);
+			name = new_equations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -479,6 +510,12 @@
 				BC8B77B21710ED4F001AEC97 /* InputCell.xib in Resources */,
 				BCB8413E1715D752001FD7EA /* PrincipalStressViewController.xib in Resources */,
 				BCB84149171BDB36001FD7EA /* ResultsViewController.xib in Resources */,
+				BCBD3C3E1755C7D000EEA6D1 /* ResultCell.xib in Resources */,
+				BCBD3C43175AE9B100EEA6D1 /* sigma_x_18pt.png in Resources */,
+				BCBD3C46175AEB1900EEA6D1 /* sigma_y_18pt.png in Resources */,
+				BCBD3C49175AECB400EEA6D1 /* tau_xy_18pt.png in Resources */,
+				BCBD3C4A175AECB400EEA6D1 /* theta_prime_deg_18pt.png in Resources */,
+				BCBD3C4C175AED3900EEA6D1 /* theta_prime_deg_12pt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +564,7 @@
 				BCB8414F171D9F93001FD7EA /* BaseDrawingView.m in Sources */,
 				BC25494C172454AC00929920 /* GraphicsObject.m in Sources */,
 				BC25494F172454C900929920 /* GraphicsStressBlock.m in Sources */,
+				BCBD3C411755C8A800EEA6D1 /* ResultCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

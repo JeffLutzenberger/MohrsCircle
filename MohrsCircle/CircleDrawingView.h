@@ -27,6 +27,8 @@
     
     NSMutableArray* collisionCheckLabels;
     
+    Boolean planeStress;
+    
 }
 
 @property (nonatomic, assign) MohrsCircleModel* circleModel;

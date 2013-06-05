@@ -42,6 +42,7 @@ double model_width_factor = 4.5;
         
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
+        planeStress = YES;
         
         MohrsCircleAppDelegate* app = (MohrsCircleAppDelegate*)[[UIApplication sharedApplication] delegate];
         self.circleModel = app.circleModel;
@@ -65,6 +66,7 @@ double model_width_factor = 4.5;
         
         //colliding label list
         collisionCheckLabels = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -72,6 +74,15 @@ double model_width_factor = 4.5;
 - (void)awakeFromNib
 {
 
+}
+
+// This method will get called for each attribute you define.
+-(void) setValue:(id)value forKey:(NSString *)key
+{
+    if ([key isEqualToString:@"stressType"])
+    {
+        planeStress = [value isEqualToString:@"plane stress"];
+    }
 }
 
 - (UIWebView*)MakeLabel:(CGFloat)x y:(CGFloat)y width:(CGFloat)width height:(CGFloat)height {
@@ -123,22 +134,80 @@ double model_width_factor = 4.5;
     
     [collisionCheckLabels removeAllObjects];
     
-    [self drawCircle];
-    
     [self drawAxes];
     
-    [self drawTauAxis];
+    [self drawCircle];
+    
+    //if( !planeStress ) {
+    //    [self drawTauAxis];
+    //}
     
     [self drawStressAxis];
     
     [self drawRotatedStressAxis];
     
-    [self drawThetaPrincipalArc];
+    if( !planeStress ){
+        [self drawThetaPrincipalArc];
+    }
     
     [self drawThetaArc];
     
     
 }
+
+- (void)drawAxes
+{
+    CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
+    CGFloat axisMargin = 30/pixelScale;
+    
+    CGFloat x1 = viewingRect.origin.x+axisMargin;
+    CGFloat x2 = viewingRect.origin.x+viewingRect.size.width-axisMargin;
+    CGFloat y1 = viewingRect.origin.y+axisMargin;
+    CGFloat y2 = viewingRect.origin.y+viewingRect.size.height-axisMargin;
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 2.0/pixelScale);
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextMoveToPoint(context, x1, 0);
+    CGContextAddLineToPoint(context, x2, 0);
+    CGContextMoveToPoint(context, 0, y1);
+    CGContextAddLineToPoint(context, 0, y2);
+    CGContextStrokePath(context);
+    
+    [self drawArrowHead:CGPointMake(x2, 0) theta:-M_PI_2 size:6/pixelScale];
+    [self drawArrowHead:CGPointMake(0, y2) theta:0 size:6/pixelScale];
+}
+
+
+- (void)drawCircle
+{
+    
+    CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
+    CGFloat radius = [self.circleModel Radius];
+    CGFloat sigma2 = [self.circleModel sigma2];
+    CGRect circle = CGRectMake(sigma2, -radius, radius*2, radius*2);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 2.0/pixelScale);
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextAddEllipseInRect(context, circle);
+    CGContextStrokePath(context);
+    
+    [self drawDot:CGPointMake(sigma2, 0)];
+    [self drawDot:CGPointMake(sigma2+2*radius, 0)];
+    
+    if( !planeStress) {
+        CGPoint ps1 = [self WorldToWindow:CGPointMake(sigma2+2*radius, 0)];
+        [sigma1Label setFrame:CGRectMake(ps1.x, ps1.y, 30, 20)];
+        [sigma1Label loadHTMLString:@"<div style='margin-top: -8px;font-size: 16px;'>&sigma;<sub>1</sub></div>" baseURL:nil];
+        //[self StartCheckLabelForCollisionAndAdjust:sigma1Label];
+        CGPoint ps2 = [self WorldToWindow:CGPointMake(sigma2, 0)];
+        [sigma2Label setFrame:CGRectMake(ps2.x-30, ps2.y, 30, 20)];
+        [sigma2Label loadHTMLString:@"<div style='margin-top: -8px;font-size: 16px;'>&sigma;<sub>2</sub></div>" baseURL:nil];
+    }
+}
+
+
 
 - (void)drawThetaPrincipalArc{
     //arc should go from plane stress line to tau = 0 (CCW)
@@ -155,12 +224,16 @@ double model_width_factor = 4.5;
     CGFloat radius = [self.circleModel Radius]*0.5;
     CGFloat sigmaAvg = [self.circleModel SigmaAvg];
     
-    Boolean clockwise = NO;
+    CGFloat theta = -2*[self.circleModel theta_p];
+    
+    Boolean clockwise = (theta > 0);
+    
+    //Boolean clockwise = NO;
     CGContextAddArc(context,
                     sigmaAvg,
                     0,
                     radius,
-                    -2*[self.circleModel theta_p],//-2*20*M_PI/180,
+                    theta,
                     0,
                     clockwise ? 1 : 0);
     CGContextStrokePath(context);
@@ -169,7 +242,7 @@ double model_width_factor = 4.5;
     
     CGPoint end = CGPointMake(sigmaAvg+radius*cos(-2*[self.circleModel theta_p]), radius*sin(-2*[self.circleModel theta_p]));
     
-    [self drawArrowHead:tip theta:0 size:6/pixelScale];
+    [self drawArrowHead:tip theta:clockwise ? M_PI : 0 size:6/pixelScale];
     
     CGPoint ps1 = [self WorldToWindow:end];
     
@@ -215,85 +288,9 @@ double model_width_factor = 4.5;
     
     CGPoint ps1 = [self WorldToWindow:end];
     
-    [twoThetaLabel setFrame:CGRectMake(ps1.x-30, ps1.y, 30, 20)];
+    [twoThetaLabel setFrame:CGRectMake(ps1.x-20, ps1.y, 30, 20)];
     
     [twoThetaLabel loadHTMLString:@"<div style='margin-top: -8px;font-size: 14px;'>2&theta;\'</div>" baseURL:nil];
-    
-}
-
-
-- (void)drawAxes
-{
-    CGFloat axisMargin = 30;
-    
-    CGFloat x1 = viewingRect.origin.x+axisMargin;
-    CGFloat x2 = viewingRect.origin.x+viewingRect.size.width-axisMargin;
-    CGFloat y1 = viewingRect.origin.y+axisMargin;
-    CGFloat y2 = viewingRect.origin.y+viewingRect.size.height-axisMargin;
-    
-    CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetLineWidth(context, 1.0/pixelScale);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    
-    CGContextMoveToPoint(context, x1, 0);
-    
-    CGContextAddLineToPoint(context, x2, 0);
-    
-    CGContextMoveToPoint(context, 0, y1);
-    
-    CGContextAddLineToPoint(context, 0, y2);
-    
-    CGContextStrokePath(context);
-    
-    [self drawArrowHead:CGPointMake(x2, 0) theta:-M_PI_2 size:6/pixelScale];
-    
-    [self drawArrowHead:CGPointMake(0, y2) theta:0 size:6/pixelScale];
-}
-
-- (void)drawCircle
-{
-    
-    CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
-    
-    CGFloat radius = [self.circleModel Radius];
-    
-    CGFloat sigma2 = [self.circleModel sigma2];
-    
-    CGRect circle = CGRectMake(sigma2, -radius, radius*2, radius*2);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetLineWidth(context, 2.0/pixelScale);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
-    
-    CGContextAddEllipseInRect(context, circle);
-    
-    CGContextStrokePath(context);
-    
-    [self drawDot:CGPointMake(sigma2, 0)];
-    
-    [self drawDot:CGPointMake(sigma2+2*radius, 0)];
-    
-    CGPoint ps1 = [self WorldToWindow:CGPointMake(sigma2+2*radius, 0)];
-    
-    [sigma1Label setFrame:CGRectMake(ps1.x, ps1.y, 30, 20)];
-    
-    [sigma1Label loadHTMLString:@"<div style='margin-top: -8px;font-size: 14px;'>&sigma;<sub>1</sub></div>" baseURL:nil];
-    
-    //[self StartCheckLabelForCollisionAndAdjust:sigma1Label];
-    
-    CGPoint ps2 = [self WorldToWindow:CGPointMake(sigma2, 0)];
-    
-    [sigma2Label setFrame:CGRectMake(ps2.x-30, ps2.y, 30, 20)];
-    
-    [sigma2Label loadHTMLString:@"<div style='margin-top: -8px;font-size: 14px;'>&sigma;<sub>2</sub></div>" baseURL:nil];
-    
-    //[self StartCheckLabelForCollisionAndAdjust:sigma2Label];
     
 }
 
@@ -338,7 +335,7 @@ double model_width_factor = 4.5;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetLineWidth(context, 1.0/pixelScale);
+    CGContextSetLineWidth(context, 2.0/pixelScale);
     
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     
@@ -364,21 +361,24 @@ double model_width_factor = 4.5;
     
     [self drawDot:CGPointMake(sigmax, -tauxy)];
     
-    CGPoint ps1 = [self PositionLabel:CGPointMake(sigmax, -tauxy) quadrant:LOWER_RIGHT textLength:50 textHeight:14];
+    if( planeStress ) {
+        CGPoint ps1 = [self PositionLabel:CGPointMake(sigmax, -tauxy) quadrant:LOWER_RIGHT textLength:50 textHeight:14];
     
-    [sigmaxLabel setFrame:CGRectMake(ps1.x, ps1.y, 100, 18)];
+        [sigmaxLabel setFrame:CGRectMake(ps1.x, ps1.y, 100, 18)];
     
-    [sigmaxLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>x</sub>,-&tau;<sub>xy</sub></div>" baseURL:nil];
+        [sigmaxLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>x</sub>,-&tau;<sub>xy</sub></div>" baseURL:nil];
     
-    [self StartCheckLabelForCollisionAndAdjust:sigmaxLabel];
+        //[self StartCheckLabelForCollisionAndAdjust:sigmaxLabel];
     
-    CGPoint ps2 = [self PositionLabel:CGPointMake(sigmay, tauxy) quadrant:UPPER_LEFT textLength:50 textHeight:14];
+        CGPoint ps2 = [self PositionLabel:CGPointMake(sigmay, tauxy) quadrant:UPPER_LEFT textLength:50 textHeight:14];
     
-    [sigmayLabel setFrame:CGRectMake(ps2.x, ps2.y, 100, 18)];
+        [sigmayLabel setFrame:CGRectMake(ps2.x, ps2.y, 100, 18)];
     
-    [sigmayLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>y</sub>,&tau;<sub>xy</sub></div>" baseURL:nil];
+        [sigmayLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>y</sub>,&tau;<sub>xy</sub></div>" baseURL:nil];
     
-    [self StartCheckLabelForCollisionAndAdjust:sigmayLabel];
+        //[self StartCheckLabelForCollisionAndAdjust:sigmayLabel];
+        
+    }
     
 }
 
@@ -388,7 +388,7 @@ double model_width_factor = 4.5;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetLineWidth(context, 1.0/pixelScale);
+    CGContextSetLineWidth(context, 2.0/pixelScale);
     
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     
@@ -412,21 +412,23 @@ double model_width_factor = 4.5;
     
     [self drawDot:CGPointMake(sigmax, -tauxy)];
     
-    CGPoint ps1 = [self PositionLabel:CGPointMake(sigmax, -tauxy) quadrant:LOWER_RIGHT textLength:50 textHeight:14];
+    if( planeStress ) {
+        CGPoint ps1 = [self PositionLabel:CGPointMake(sigmax, -tauxy) quadrant:LOWER_RIGHT textLength:50 textHeight:14];
     
-    [sigmaxPLabel setFrame:CGRectMake(ps1.x, ps1.y, 100, 20)];
+        [sigmaxPLabel setFrame:CGRectMake(ps1.x, ps1.y, 100, 20)];
     
-    [sigmaxPLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>x</sub>\',-&tau;\'<sub>xy</sub></div>" baseURL:nil];
+        [sigmaxPLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>x</sub>\',-&tau;\'<sub>xy</sub></div>" baseURL:nil];
     
-    [self StartCheckLabelForCollisionAndAdjust:sigmaxPLabel];
+        //[self StartCheckLabelForCollisionAndAdjust:sigmaxPLabel];
     
-    CGPoint ps2 = [self PositionLabel:CGPointMake(sigmay, tauxy) quadrant:UPPER_LEFT textLength:50 textHeight:14];
+        CGPoint ps2 = [self PositionLabel:CGPointMake(sigmay, tauxy) quadrant:UPPER_LEFT textLength:50 textHeight:14];
     
-    [sigmayPLabel setFrame:CGRectMake(ps2.x, ps2.y, 100, 20)];
+        [sigmayPLabel setFrame:CGRectMake(ps2.x, ps2.y, 100, 20)];
     
-    [sigmayPLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>y</sub>\',&tau;\'<sub>xy</sub></div>" baseURL:nil];
+        [sigmayPLabel loadHTMLString:@"<div style='margin-top: -14px;font-size: 14px;'>&sigma;<sub>y</sub>\',&tau;\'<sub>xy</sub></div>" baseURL:nil];
     
-    [self StartCheckLabelForCollisionAndAdjust:sigmayPLabel];
+        //[self StartCheckLabelForCollisionAndAdjust:sigmayPLabel];
+    }
     
 }
 

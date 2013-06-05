@@ -152,24 +152,29 @@
         if(indexPath.row == 0){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", self.circleModel.sigmax];
             cell.label = @"sigma_x";
+            //helvetica 18pt 110
+            cell.imageView.image = [UIImage imageNamed:@"sigma_x_12pt.png"];
             
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>x</sub></div>" baseURL:nil];
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>x</sub></div>" baseURL:nil];
             
         }
         else if(indexPath.row == 1){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.sigmay];
             cell.label = @"sigma_y";
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>y</sub></div>" baseURL:nil];
+            cell.imageView.image = [UIImage imageNamed:@"sigma_y_12pt.png"];
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>y</sub></div>" baseURL:nil];
         }
         else if(indexPath.row == 2){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.tauxy];
             cell.label = @"tau_xy";
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&tau;<sub>xy</sub></div>" baseURL:nil];
+            cell.imageView.image = [UIImage imageNamed:@"tau_xy_12pt.png"];
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&tau;<sub>xy</sub></div>" baseURL:nil];
         }
         else if(indexPath.row == 3){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.theta*180/M_PI];
             cell.label = @"theta";
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;\'(&deg;)</div>" baseURL:nil];
+            cell.imageView.image = [UIImage imageNamed:@"theta_prime_deg_12pt.png"];
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;\'(&deg;)</div>" baseURL:nil];
         }
         
         return cell;

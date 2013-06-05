@@ -13,12 +13,15 @@
 #import "GraphicsStressBlock.h"
 
 @interface ResultsDrawingView : BaseDrawingView {
+
+    GraphicsStressBlock* stressBlock;
     GraphicsStressBlock* initialStressBlock;
     GraphicsStressBlock* principalStressBlock;
     GraphicsStressBlock* rotatedStressBlock;
     GraphicsStressBlock* maxShearStressBlock;
 }
 
+@property (nonatomic) StressBlockType stressBlockType;
 @property (nonatomic, assign) MohrsCircleModel* circleModel;
 
 

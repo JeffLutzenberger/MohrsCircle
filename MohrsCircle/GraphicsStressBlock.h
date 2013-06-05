@@ -9,9 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "GraphicsObject.h"
 
+enum {
+    InitialStress = 1,
+    PrincipalStress = 2,
+    RotatedStress = 3,
+    MaxShearStress = 4
+    };
+    
+typedef NSUInteger StressBlockType;
+    
 @interface GraphicsStressBlock : GraphicsObject {
     
     CGFloat blockSize;
+    UIWebView* titleLabel;
     UIWebView* sigmaxLabel;
     UIWebView* sigmayLabel;
     UIWebView* tauxyLabel;
@@ -25,7 +35,7 @@
                  sigmax:(CGFloat)sigmax
                  sigmay:(CGFloat)sigmay
                   tauxy:(CGFloat)tauxy
-              principal:(Boolean)principal;
+        stressBlockType:(StressBlockType)stressBlockType;
 
 - (void)drawThetaArc:(CGPoint)center theta:(CGFloat)theta;
 
