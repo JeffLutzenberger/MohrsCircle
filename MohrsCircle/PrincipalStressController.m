@@ -86,13 +86,13 @@
     
     if( [self validateTextIsNumber:cell.inputTextField.text value:&newValue ] ){
         [cell.inputTextField setTextColor:[UIColor blackColor]];
-        if( cell.label == @"sigma_1")
+        if( [cell.label  isEqual: @"sigma_1"])
             _circleModel.sigma1 = newValue;
-        else if( cell.label == @"sigma_2")
+        else if( [cell.label  isEqual: @"sigma_2"])
             _circleModel.sigma2 = newValue;
-        else if( cell.label == @"theta_p")
+        else if( [cell.label  isEqual: @"theta_p"])
             _circleModel.theta_p = newValue*M_PI/180;
-        else if( cell.label == @"theta")
+        else if( [cell.label  isEqual: @"theta"])
             _circleModel.theta = newValue*M_PI/180;
         [_circleModel CalculateRotatedStressFromPrincipalStressAndThetaP];
         [_circleDrawing zoomToExtents];
@@ -157,22 +157,38 @@
         if(indexPath.row == 0){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.sigma1];
             cell.label = @"sigma_1";
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>1</sub></div>" baseURL:nil];
+            NSString* str = @"<div style='margin-top: -8px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: #444;'>&sigma;<sub>1</sub></div>";
+            [cell.webView loadHTMLString:str baseURL:nil];
+            
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>1</sub></div>" baseURL:nil];
         }
         else if(indexPath.row == 1){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.sigma2];
             cell.label = @"sigma_2";
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>2</sub></div>" baseURL:nil];
+            //cell.imageView.image = [UIImage imageNamed:@"sigma_2_12pt.png"];
+            //cell.imageView.image = [UIImage imageNamed:@"sigma_1_12pt.png"];
+            NSString* str = @"<div style='margin-top: -8px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: #444;'>&sigma;<sub>2</sub></div>";
+            [cell.webView loadHTMLString:str baseURL:nil];
+            
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>2</sub></div>" baseURL:nil];
         }
         else if(indexPath.row == 2){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.theta_p*180/M_PI];
             cell.label = @"theta_p";
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;<sub>p</sub>(&deg;)</div>" baseURL:nil];
+            //cell.imageView.image = [UIImage imageNamed:@"theta_p_deg_12pt.png"];
+            NSString* str = @"<div style='margin-top: -8px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: #444;'>&theta;<sub>p</sub>(&deg;)</div>";
+            [cell.webView loadHTMLString:str baseURL:nil];
+            
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;<sub>p</sub>(&deg;)</div>" baseURL:nil];
         }
         else if(indexPath.row == 3){
             cell.inputTextField.text = [NSString stringWithFormat:@"%0.2f", _circleModel.theta*180/M_PI];
             cell.label = @"theta";
-            [cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;\'(&deg;)</div>" baseURL:nil];
+            //cell.imageView.image = [UIImage imageNamed:@"theta_prime_deg_12pt.png"];
+            NSString* str = @"<div style='margin-top: -8px; font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: #444;'>&theta;\'(&deg;)</div>";
+            [cell.webView loadHTMLString:str baseURL:nil];
+            
+            //[cell.webView loadHTMLString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;\'(&deg;)</div>" baseURL:nil];
         }
         
         return cell;

@@ -15,8 +15,8 @@
 
 @property (nonatomic, retain) IBOutlet UITextField *inputTextField;
 
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
-
 @property (nonatomic, retain) NSString *label;
+
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
 
 @end

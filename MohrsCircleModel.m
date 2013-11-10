@@ -11,8 +11,8 @@
 
 @implementation MohrsCircleModel
 
-- (id)init
-{
+- (id)init {
+    
     self = [super init];
     
     _sigmax = 15000;
@@ -20,24 +20,24 @@
     _tauxy = 4000;
     _theta = 40*M_PI/180;
     
-    [self CalculatePrinciplaAndRotatedStress];
+    [self CalculatePrincipalAndRotatedStress];
     
     return self;
-    
 }
 
-- (CGFloat)Radius
-{
+- (CGFloat)Radius {
+    
     return abs((_sigma1 - _sigma2)*0.5);
 }
 
-- (CGFloat)SigmaAvg
-{
+- (CGFloat)SigmaAvg {
+    
     return (_sigma1 + _sigma2)*0.5;
 }
 
 
-- (void)CalculatePrinciplaAndRotatedStress{
+- (void)CalculatePrincipalAndRotatedStress {
+    
     //given sigmax, sigmay, tauxy and theta calculate the principal stresses and
     //the rotated stress state for theta
     CGFloat sigmaAvg = (_sigmax + _sigmay)*0.5;
@@ -51,14 +51,12 @@
     _sigmay_theta = sigmaAvg - (_sigmax - _sigmay)*0.5*cos(2*_theta)-_tauxy*sin(2*_theta);
     _tauxy_theta = -(_sigmax-_sigmay)*0.5*sin(2*_theta)+_tauxy*cos(2*_theta);
     
-    //max shear values
-    //max shear = raidus
-    //max shear normal stress = sigmaAvg
-    //max shear theta = 90 + 2*theta_p (for y up coordinate system)
-    _theta_max_tauxy = M_PI_4 + _theta_p;
+    _tau_max = radius;
+    _theta_tau_max = _theta_p - M_PI_4;
 }
 
-- (void)CalculateRotatedStressFromPrincipalStressAndThetaP{
+- (void)CalculateRotatedStressFromPrincipalStressAndThetaP {
+    
     //given sigma1, sigma2, theta_p and theta calculate the original stresses and
     //the rotated stress state for theta
     CGFloat sigmaAvg = (_sigma1 + _sigma2)*0.5;
@@ -72,7 +70,7 @@
     _sigmay_theta = sigmaAvg - (_sigmax - _sigmay)*0.5*cos(2*_theta)-_tauxy*sin(2*_theta);
     _tauxy_theta = -(_sigmax-_sigmay)*0.5*sin(2*_theta)+_tauxy*cos(2*_theta);
     
-    [self CalculatePrinciplaAndRotatedStress];
+    [self CalculatePrincipalAndRotatedStress];
 }
 
 @end

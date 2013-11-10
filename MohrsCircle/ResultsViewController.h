@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "MohrsCircleModel.h"
+//#import "CircleDrawingView.h"
 #import "ResultsDrawingView.h"
 
 @interface ResultsViewController : UIViewController
+
+//@property (nonatomic, retain) IBOutlet CircleDrawingView* circleDrawing;
 
 @property (nonatomic, retain) IBOutlet ResultsDrawingView* resultsDrawing;
 

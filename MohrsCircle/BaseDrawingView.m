@@ -10,8 +10,8 @@
 
 @implementation BaseDrawingView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
+    
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -38,23 +38,23 @@
 }
 
 
-- (CGPoint)translatePoint:(CGPoint)p1 p2:(CGPoint)p2{
+- (CGPoint)translatePoint:(CGPoint)p1 p2:(CGPoint)p2 {
+    
     return CGPointMake(p1.x+p2.x, p1.y+p2.y);
 }
 
-- (CGPoint)rotatePoint:(CGPoint)p theta:(CGFloat)theta{
+- (CGPoint)rotatePoint:(CGPoint)p theta:(CGFloat)theta {
+    
     CGFloat x = p.x;
     CGFloat y = p.y;
     return CGPointMake(x*cos(theta) - y*sin(theta),
                        x*sin(theta) + y*cos(theta));
 }
 
-- (void)drawDot:(CGPoint)p{
+- (void)drawDot:(CGPoint)p {
     
     CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
-    
     CGFloat radius = 2/pixelScale;
-    
     CGRect circle = CGRectMake(p.x-radius, p.y-radius, 2*radius, 2*radius);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -63,18 +63,16 @@
     
     CGContextStrokePath(context);
 }
-- (void)drawArrowHead:(CGPoint)p theta:(CGFloat)theta size:(CGFloat)size{
+
+- (void)drawArrowHead:(CGPoint)p theta:(CGFloat)theta size:(CGFloat)size {
     
     //CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGPoint p1 = CGPointMake(0, 0);
-    
     CGPoint p2 = CGPointMake(p1.x-size*0.5, p1.y-size);
-    
     CGPoint p3 = CGPointMake(0, p1.y-size*0.6);
-    
     CGPoint p4 = CGPointMake(p1.x+size*0.5, p1.y-size);
     
     p1 = [self rotatePoint:p1 theta:theta];
@@ -95,10 +93,9 @@
     
     CGPathDrawingMode mode = kCGPathFillStroke;
     CGContextDrawPath( context, mode );
-    
 }
 
-- (void)drawArrow:(CGPoint)tip theta:(CGFloat)theta length:(CGFloat)length headSize:(CGFloat)headSize{
+- (void)drawArrow:(CGPoint)tip theta:(CGFloat)theta length:(CGFloat)length headSize:(CGFloat)headSize {
     
     //CGFloat pixelScale = self.frame.size.width/viewingRect.size.width;
     
@@ -122,8 +119,8 @@
     
 }
 
-- (CGPoint)WorldToWindow: (CGPoint)worldPt
-{
+- (CGPoint)WorldToWindow: (CGPoint)worldPt {
+    
     //x
     CGFloat x0win = 0;
     CGFloat x2win = self.frame.size.width;
@@ -141,8 +138,8 @@
     return CGPointMake( x1win, self.frame.size.height - y1win );
 }
 
-- (CGPoint)WindowToWorld: (CGPoint)windowPt
-{
+- (CGPoint)WindowToWorld: (CGPoint)windowPt {
+    
     //x
     CGFloat x0win = 0;
     CGFloat x2win = self.frame.size.width;
@@ -159,6 +156,5 @@
     
     return CGPointMake( x1world, y1world );
 }
-
 
 @end

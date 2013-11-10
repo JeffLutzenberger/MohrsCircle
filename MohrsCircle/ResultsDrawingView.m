@@ -16,10 +16,10 @@
 
 @synthesize circleModel = _circleModel;
 
-double stress_block_size = 8;
+double stress_block_size = 6;
 
-double model_width = 100;
-double model_margin = 18;
+double model_width = 80;
+double model_margin = 0;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -112,7 +112,7 @@ double model_margin = 18;
         tauxy = self.circleModel.tauxy_theta;
     }
     else if(_stressBlockType == MaxShearStress) {
-        theta = self.circleModel.theta_max_tauxy;
+        theta = self.circleModel.theta_tau_max;
         sigmax = self.circleModel.SigmaAvg;
         sigmay = self.circleModel.SigmaAvg;
         tauxy = self.circleModel.Radius;
@@ -202,7 +202,7 @@ double model_margin = 18;
     CGFloat x = model_width - stress_block_size - model_margin;
     CGFloat y = -viewingRect.size.height*0.2;
     CGPoint center = CGPointMake(x, y);
-    CGFloat theta = self.circleModel.theta_max_tauxy;
+    CGFloat theta = self.circleModel.theta_tau_max;
     
     [maxShearStressBlock drawStressBlock:center
                                     theta:theta

@@ -17,4 +17,6 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *title;
 
+@property (nonatomic, retain) IBOutlet UILabel *results;
+
 @end

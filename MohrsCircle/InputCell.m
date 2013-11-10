@@ -11,8 +11,8 @@
 @implementation InputCell
 
 @synthesize inputTextField = _inputTextField;
-@synthesize webView = _webView;
 @synthesize label;
+@synthesize webView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

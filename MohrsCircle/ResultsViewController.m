@@ -86,7 +86,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    if( indexPath.row == 2)
+        return 130;
+    else
+        return 110;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -131,47 +134,52 @@
         if (indexPath.row == 0) {
             cell.resultDrawing.stressBlockType = InitialStress;
             [cell.title setText:@"Initial Stress"];
-            NSString* str = @"";
+            NSString* str = @"<div style='margin-top: -8px; font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #555;'>";
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>x</sub> = %0.2f</div>", _circleModel.sigmax];
+                   @"<div>&sigma;<sub>x</sub> = %0.2f</div>", _circleModel.sigmax];
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>y</sub> = %0.2f</div>", _circleModel.sigmay];
+                   @"<div>&sigma;<sub>y</sub> = %0.2f</div>", _circleModel.sigmay];
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&tau;<sub>xy</sub> = %0.2f</div>", _circleModel.tauxy];
+                   @"<div>&tau;<sub>xy</sub> = %0.2f</div></div>", _circleModel.tauxy];
             [cell.webView loadHTMLString:str baseURL:nil];
         }
         else if (indexPath.row == 1) {
             cell.resultDrawing.stressBlockType = PrincipalStress;
             [cell.title setText:@"Principal Stress"];
-            NSString* str = @"";
+            NSString* str = @"<div style='margin-top: -8px; font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #555;'>";
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>1</sub> = %0.2f</div>", _circleModel.sigma1];
+                   @"<div>&sigma;<sub>1</sub> = %0.2f</div>", _circleModel.sigma1];
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>2</sub> = %0.2f</div>", _circleModel.sigma2];
+                   @"<div>&sigma;<sub>2</sub> = %0.2f</div>", _circleModel.sigma2];
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&theta;<sub>p</sub> = %0.2f</div>", _circleModel.theta_p*180/M_PI];
+                   @"<div>&theta;<sub>p</sub> = %0.2f&deg;</div></div>", _circleModel.theta_p*180/M_PI];
             [cell.webView loadHTMLString:str baseURL:nil];
         }
         else if (indexPath.row == 2) {
             cell.resultDrawing.stressBlockType = RotatedStress;
-            NSString* titleStr = @"";
-            titleStr = [titleStr stringByAppendingFormat:@"Rotated Stress (%0.2f deg)", _circleModel.theta*180/M_PI];
+            NSString* titleStr = @"Rotated Stress";
             [cell.title setText:titleStr];
-            NSString* str = @"";
+            NSString* str = @"<div style='margin-top: -8px; font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #555;'>";
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>x</sub> = %0.2f</div>", _circleModel.sigmax_theta];
+                   @"<div>&theta; = %0.2f&deg;</div>", _circleModel.theta*180/M_PI];
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&sigma;<sub>y</sub> = %0.2f</div>", _circleModel.sigmay_theta];
+                   @"<div>&sigma;<sub>x</sub> = %0.2f</div>", _circleModel.sigmax_theta];
             str = [str stringByAppendingFormat:
-                   @"<div style='margin-top: -8px;font-size: 18px;'>&tau;<sub>xy</sub> = %0.2f</div>", _circleModel.tauxy_theta];
+                   @"<div>&sigma;<sub>y</sub> = %0.2f</div>", _circleModel.sigmay_theta];
+            str = [str stringByAppendingFormat:
+                   @"<div>&tau;<sub>xy</sub> = %0.2f</div></div>", _circleModel.tauxy_theta];
             [cell.webView loadHTMLString:str baseURL:nil];
         }
         else if (indexPath.row == 3) {
             cell.resultDrawing.stressBlockType = MaxShearStress;
             [cell.title setText:@"Max Shear"];
-            NSString* str = @"";  
-            str = [str stringByAppendingString:@"<div style='margin-top: -8px;font-size: 18px;'>&tau;<sub>xy</sub></div>"];
-            str = [str stringByAppendingString:@"<div style='margin-top: -8px;font-size: 18px;'>&theta;</div>"];
+            NSString* str = @"<div style='margin-top: -8px; font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #555;'>";
+            str = [str stringByAppendingFormat:
+                   @"<div>&sigma;<sub>avg</sub> = %0.2f</div>", _circleModel.SigmaAvg];
+            str = [str stringByAppendingFormat:
+                   @"<div>&tau;<sub>max</sub> = %0.2f</div>", _circleModel.tau_max];
+            str = [str stringByAppendingFormat:
+                   @"<div>&theta;<sub>s</sub> = %0.2f&deg;</div></div>", _circleModel.theta_tau_max*180/M_PI];
             [cell.webView loadHTMLString:str baseURL:nil];
         }
         return cell;

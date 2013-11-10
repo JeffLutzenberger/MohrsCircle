@@ -10,7 +10,7 @@
 
 @implementation GraphicsStressBlock
 
-- (id)initWithViewAndSize:(UIView*)view size:(CGFloat)size viewRect:(CGRect)viewRect{
+- (id)initWithViewAndSize:(UIView*)view size:(CGFloat)size viewRect:(CGRect)viewRect {
     
     self = [super init];
     if(self) {
@@ -44,12 +44,11 @@
     
     CGContextSetLineWidth(context, 1.0);
     
+    [[UIColor darkGrayColor] set];
+    
     CGPoint p1 = CGPointMake(-size, -size);
-    
     CGPoint p2 = CGPointMake(size, -size);
-    
     CGPoint p3 = CGPointMake(size, size);
-    
     CGPoint p4 = CGPointMake(-size, size);
     
     p1 = [self rotatePoint:p1 theta:theta];
@@ -114,7 +113,7 @@
     [self drawArrow:p1 theta:theta-M_PI_2 length:arrowLength headSize:headSize];
     
     //shear stress arrows
-    if( stressBlockType != PrincipalStress ){
+    if( stressBlockType != PrincipalStress ) {
         p1 = CGPointMake(arrowLength*0.5, shearStressOffset);
         p1 = [self rotatePoint:p1 theta:theta];
         p1 = [self translatePoint:p1 p2:center];
@@ -162,15 +161,12 @@
         [thetaLabel setFrame:CGRectMake(ps1.x+100, ps1.y+labelOffset, 100, 30)];
         labelOffset += 20;
         [thetaLabel loadHTMLString:@"<div style='font-size: 14px;'>&theta;=1000.00</div>" baseURL:nil];
-        
-        
     }
     
     //normal stress arrows
     p1 = CGPointMake(center.x-3*size, center.y+4*size);
     ps1 = [self WorldToWindow:p1];
 
-    
     switch (stressBlockType) {
         case InitialStress: {
             //[titleLabel setFrame:CGRectMake(ps1.x, ps1.y, 200, 30)];
@@ -273,7 +269,5 @@
     CGPathDrawingMode mode = kCGPathStroke;// kCGPathFillStroke;
     CGContextDrawPath( context, mode );
 }
-
-
 
 @end
